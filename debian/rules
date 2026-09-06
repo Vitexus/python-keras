@@ -5,5 +5,21 @@ export PYBUILD_NAME=keras
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
+override_dh_auto_configure:
+	# setuptools' dynamic attr-based version lookup ("keras.src.version.__version__")
+	# is fragile against keras's package-dir remapping (keras -> keras/api) and
+	# fails on some setuptools versions with "ModuleNotFoundError: No module
+	# named 'api'"; pin the version statically instead (upstream's own build
+	# process runs pip_build.py first, not a plain PEP 517 build).
+	sed -i \
+	  -e 's/dynamic = \["version"\]/version = "3.15.1"/' \
+	  pyproject.toml
+	sed -i '/\[tool\.setuptools\.dynamic\]/,/^$$/d' pyproject.toml
+	dh_auto_configure
+
+override_dh_auto_clean:
+	dh_auto_clean
+	git checkout pyproject.toml 2>/dev/null || true
+
 override_dh_auto_test:
 	# Skip tests - test dependencies not packaged
