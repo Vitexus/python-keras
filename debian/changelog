@@ -1,0 +1,7 @@
+python-keras (3.15.1-1~vitex1) unstable; urgency=medium
+
+  * Initial Debian packaging of upstream 3.15.1 under Vitexus, pinned to
+    the release tag. Packaged as a TensorFlow dependency for the
+    invokeai-mastodon project's local NSFW image classification.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Sun, 06 Sep 2026 14:42:37 +0200

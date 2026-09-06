@@ -1,0 +1,37 @@
+Source: python-keras
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-setuptools,
+Standards-Version: 4.7.0
+Homepage: https://github.com/keras-team/keras
+Vcs-Git: https://github.com/Vitexus/python-keras.git
+Vcs-Browser: https://github.com/Vitexus/python-keras
+Rules-Requires-Root: no
+
+Package: python3-keras
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-absl-py,
+ python3-h5py,
+ python3-ml-dtypes,
+ python3-namex,
+ python3-numpy,
+ python3-optree,
+ python3-packaging,
+ python3-rich,
+Description: Multi-backend deep learning API (Keras 3)
+ Keras is a deep learning API written in Python, capable of running on
+ top of JAX, TensorFlow, or PyTorch. It provides a consistent, high-level
+ interface for building and training neural networks.
+ .
+ Packaged as a TensorFlow dependency for the invokeai-mastodon
+ project's local NSFW image classification.
